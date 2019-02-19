@@ -1,4 +1,4 @@
-package org.liberejo.game
+package org.liberejo.game.screen
 
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.Input
