@@ -13,6 +13,6 @@ object DesktopLauncher {
 			height = 720
 			title = "liberejo"
 		}
-		LwjglApplication(Liberejo(), config)
+		LwjglApplication(Liberejo, config)
 	}
 }
