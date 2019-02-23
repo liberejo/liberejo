@@ -1,1 +1,1 @@
-include 'desktop', 'core', 'api'
+include 'launcher', 'core', 'api'

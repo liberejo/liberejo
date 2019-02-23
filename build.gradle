@@ -31,7 +31,7 @@ allprojects {
     }
 }
 
-project(":desktop") {
+project(":launcher") {
     apply plugin: "kotlin"
 
     dependencies {
@@ -84,11 +84,24 @@ project(":core") {
 
         // google
         implementation "com.google.guava:guava:27.0.1-jre"
+
+        // moshi
+        implementation "com.squareup.moshi:moshi:1.8.0"
     }
 }
 
 project(":api") {
     apply plugin: "kotlin"
+
+    dependencies {
+        // kotlin
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+        // gdx
+        api "com.badlogicgames.gdx:gdx:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        api "com.badlogicgames.ashley:ashley:$ashleyVersion"
+    }
 }
 
 tasks.eclipse.doLast {
