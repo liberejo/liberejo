@@ -1,14 +1,15 @@
 package org.liberejo.api
 
 import com.esotericsoftware.kryo.Serializer
-import com.esotericsoftware.kryonet.Connection
-import com.esotericsoftware.kryonet.EndPoint
-import com.esotericsoftware.kryonet.Listener
+import com.esotericsoftware.kryonet.*
 
 interface NetworkManager {
 	val isClient: Boolean
 	val isServer: Boolean
 	val address: String
+
+	val server: Server
+	val client: Client
 
 	companion object {
 		const val TCP_PORT = 34500
@@ -24,6 +25,8 @@ interface NetworkManager {
 
 	fun stop()
 }
+
+// Util
 
 inline fun <reified T : Any> EndPoint.onReceive(crossinline body: (conn: Connection, packet: T) -> Unit) {
 	addListener(object : Listener() {

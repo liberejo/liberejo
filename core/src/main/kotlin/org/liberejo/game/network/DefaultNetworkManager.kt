@@ -15,9 +15,8 @@ class DefaultNetworkManager(override val isClient: Boolean, override val isServe
 		const val CONNECT_WAIT = 5000
 	}
 
-	val server: Server = Server()
-
-	val client: Client = Client()
+	override val server: Server = Server()
+	override val client: Client = Client()
 
 	init {
 		server.apply {
