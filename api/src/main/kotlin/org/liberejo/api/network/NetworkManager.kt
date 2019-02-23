@@ -1,4 +1,4 @@
-package org.liberejo.api
+package org.liberejo.api.network
 
 import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryonet.*

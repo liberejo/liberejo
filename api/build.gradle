@@ -1,0 +1,7 @@
+plugins {
+    id "org.jetbrains.kotlin.plugin.noarg" version "1.3.21"
+}
+
+noArg {
+    annotation = "org.liberejo.api.util.NoArg"
+}

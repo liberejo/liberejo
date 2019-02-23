@@ -4,22 +4,23 @@ import com.badlogic.ashley.core.Entity
 import com.badlogic.ashley.core.PooledEngine
 import com.badlogic.gdx.Gdx
 import com.badlogic.gdx.math.Vector2
-import com.badlogic.gdx.physics.box2d.Transform
 import com.badlogic.gdx.physics.box2d.World
 import com.esotericsoftware.kryonet.Connection
 import com.google.common.collect.HashBiMap
 import ktx.ashley.allOf
 import org.kodein.di.Kodein
 import org.kodein.di.generic.instance
-import org.liberejo.api.NetworkManager
+import org.liberejo.api.engine.Transform
+import org.liberejo.api.network.NetworkManager
 import org.liberejo.api.engine.player
 import org.liberejo.api.engine.player.NetworkPlayerManager
 import org.liberejo.api.engine.player.Player
 import org.liberejo.api.engine.transform
-import org.liberejo.api.onConnect
-import org.liberejo.api.onDisconnect
-import org.liberejo.api.onReceive
-import org.liberejo.game.Liberejo
+import org.liberejo.api.network.onConnect
+import org.liberejo.api.network.onDisconnect
+import org.liberejo.api.network.onReceive
+import org.liberejo.api.network.packet.CDespawnPlayerPacket
+import org.liberejo.api.network.packet.CSpawnPlayerPacket
 import org.liberejo.game.engine.spawnPlayer
 import java.util.*
 
@@ -99,10 +100,6 @@ class DefaultNetworkPlayerManager(kodein: Kodein) : NetworkPlayerManager {
 				}
 			}
 		}
-	}
-
-	override fun spawnPlayerForConnection(id: UUID, conn: Connection) {
-
 	}
 
 	override fun despawnPlayer(id: UUID) {

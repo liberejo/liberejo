@@ -3,10 +3,9 @@ package org.liberejo.game.network
 import com.badlogic.gdx.Gdx
 import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryonet.*
-import org.liberejo.api.NetworkManager
-import org.liberejo.api.onConnect
-import org.liberejo.api.onDisconnect
-import kotlin.reflect.KClass
+import org.liberejo.api.network.NetworkManager
+import org.liberejo.api.network.onConnect
+import org.liberejo.api.network.onDisconnect
 
 class DefaultNetworkManager(override val isClient: Boolean, override val isServer: Boolean, override val address: String) : NetworkManager {
 	companion object {
