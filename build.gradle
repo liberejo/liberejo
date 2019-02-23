@@ -7,6 +7,7 @@ buildscript {
         jcenter()
         google()
     }
+
     dependencies {
         classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
     }
@@ -84,6 +85,10 @@ project(":core") {
         // google
         compile "com.google.guava:guava:27.0.1-jre"
     }
+}
+
+project(":api") {
+    apply plugin: "kotlin"
 }
 
 tasks.eclipse.doLast {
