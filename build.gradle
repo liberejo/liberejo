@@ -35,10 +35,10 @@ project(":desktop") {
     apply plugin: "kotlin"
 
     dependencies {
-        compile project(":core")
-        compile "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
-        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+        implementation project(":core")
+        implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     }
 }
 
@@ -47,43 +47,43 @@ project(":core") {
 
     dependencies {
         // kotlin
-        compile "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-        implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1'
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1"
 
         // gdx
-        compile "com.badlogicgames.gdx:gdx:$gdxVersion"
-        compile "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        compile "com.badlogicgames.ashley:ashley:$ashleyVersion"
+        implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        implementation "com.badlogicgames.ashley:ashley:$ashleyVersion"
 
         // ktx
-        compile group: "io.github.libktx", name: "ktx-actors", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-app", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-ashley", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-assets", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-async", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-box2d", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-collections", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-freetype", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-graphics", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-i18n", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-inject", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-log", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-math", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-scene2d", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-style", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-vis", version: ktxVersion
-        compile group: "io.github.libktx", name: "ktx-vis-style", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-actors", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-app", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-ashley", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-assets", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-async", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-box2d", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-collections", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-freetype", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-graphics", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-i18n", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-inject", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-log", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-math", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-scene2d", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-style", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-vis", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-vis-style", version: ktxVersion
 
         // kryo
-        compile group: "com.esotericsoftware", name: "kryo", version: "5.0.0-RC2"
-        compile group: "kryonet", name: "kryonet", version: "2.21"
-        compile group: "de.javakaffee", name: "kryo-serializers", version: "0.45"
+        implementation group: "com.esotericsoftware", name: "kryo", version: "5.0.0-RC2"
+        implementation group: "kryonet", name: "kryonet", version: "2.21"
+        implementation group: "de.javakaffee", name: "kryo-serializers", version: "0.45"
 
         // kodein
         implementation "org.kodein.di:kodein-di-generic-jvm:6.1.0"
 
         // google
-        compile "com.google.guava:guava:27.0.1-jre"
+        implementation "com.google.guava:guava:27.0.1-jre"
     }
 }
 
