@@ -31,14 +31,22 @@ allprojects {
     }
 }
 
-project(":launcher") {
+project(":api") {
     apply plugin: "kotlin"
 
     dependencies {
-        implementation project(":core")
-        implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
-        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
+        // kotlin
         implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+        // gdx
+        api "com.badlogicgames.gdx:gdx:$gdxVersion"
+        api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
+        api "com.badlogicgames.ashley:ashley:$ashleyVersion"
+
+        // kryo
+        implementation group: "com.esotericsoftware", name: "kryo", version: "5.0.0-RC2"
+        implementation group: "kryonet", name: "kryonet", version: "2.21"
+        implementation group: "de.javakaffee", name: "kryo-serializers", version: "0.45"
     }
 }
 
@@ -46,6 +54,8 @@ project(":core") {
     apply plugin: "kotlin"
 
     dependencies {
+        compile project(":api")
+
         // kotlin
         implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
         implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1"
@@ -90,17 +100,14 @@ project(":core") {
     }
 }
 
-project(":api") {
+project(":launcher") {
     apply plugin: "kotlin"
 
     dependencies {
-        // kotlin
+        compile project(":core")
+        implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-
-        // gdx
-        api "com.badlogicgames.gdx:gdx:$gdxVersion"
-        api "com.badlogicgames.gdx:gdx-box2d:$gdxVersion"
-        api "com.badlogicgames.ashley:ashley:$ashleyVersion"
     }
 }
 
