@@ -1,5 +1,6 @@
 package org.liberejo.api.network
 
+import com.badlogic.gdx.utils.Disposable
 import com.esotericsoftware.kryo.Serializer
 import com.esotericsoftware.kryonet.*
 
