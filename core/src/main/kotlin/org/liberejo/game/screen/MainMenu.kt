@@ -11,6 +11,7 @@ import ktx.actors.onClick
 import ktx.vis.menuItem
 import ktx.vis.popupMenu
 import ktx.vis.window
+import org.liberejo.game.Liberejo
 
 class MainMenu : Screen {
 	private val uiStage = Stage(ScreenViewport())
@@ -27,8 +28,13 @@ class MainMenu : Screen {
 			isMovable = false
 
 			table(true) {
-				textButton("Play").onClick {
-					println("TODO")
+				textButton("Host").onClick {
+					Liberejo.hostGame()
+				}
+				row()
+
+				textButton("Join").onClick {
+					Liberejo.joinGame("localhost")
 				}
 				row()
 

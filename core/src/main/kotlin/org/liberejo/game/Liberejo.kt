@@ -30,6 +30,11 @@ object Liberejo : KtxGame<Screen>() {
 		setScreen<GameScreen>()
 	}
 
+	fun joinGame(address: String) {
+		removeScreen<MainMenu>()
+		addScreen(GameScreen(isClient = true, isServer = false, address = address))
+	}
+
 	fun loadMainMenu() {
 		addScreen(MainMenu())
 	}
