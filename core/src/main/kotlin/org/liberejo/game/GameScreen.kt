@@ -107,7 +107,7 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 	}
 
 	private fun initMods() {
-
+		Gdx.app.log("Game", "Initializing mods")
 	}
 
 	override fun render(delta: Float) {

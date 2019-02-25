@@ -3,5 +3,5 @@ plugins {
 }
 
 noArg {
-    annotation = "org.liberejo.api.util.NoArg"
+    annotation "org.liberejo.api.util.NoArg"
 }
