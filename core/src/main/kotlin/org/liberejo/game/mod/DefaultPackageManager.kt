@@ -7,4 +7,7 @@ class DefaultPackageManager : PackageManager() {
 	override fun loadPackage(packageDeclaration: PackageDeclaration): LoadedPackage {
 		TODO("not implemented")
 	}
+	override fun unloadPackage(packageDeclaration: PackageDeclaration) {
+		TODO("not implemented")
+	}
 }
