@@ -1,3 +1,3 @@
 package org.liberejo.api.mod.declaration
 
-class LocalPackageDeclaration(id: String) : PackageDeclaration(id)
+class LocalPackageDeclaration(id: String, version: String) : PackageDeclaration(id, version)
