@@ -1,11 +1,6 @@
 buildscript {
     repositories {
-        mavenLocal()
         mavenCentral()
-        maven { url "https://plugins.gradle.org/m2/" }
-        maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
-        jcenter()
-        google()
     }
 
     dependencies {
@@ -86,7 +81,7 @@ project(":core") {
 
         // ktx
         implementation group: "io.github.libktx", name: "ktx-actors", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-app", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-app", version: ktxVersion
         implementation group: "io.github.libktx", name: "ktx-ashley", version: ktxVersion
         implementation group: "io.github.libktx", name: "ktx-assets", version: ktxVersion
         implementation group: "io.github.libktx", name: "ktx-async", version: ktxVersion
@@ -128,8 +123,4 @@ project(":launcher") {
         implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
     }
-}
-
-tasks.eclipse.doLast {
-    delete ".project"
 }
