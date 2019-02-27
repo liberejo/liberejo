@@ -7,33 +7,34 @@ import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Vector2
 import com.badlogic.gdx.scenes.scene2d.Stage
-import com.badlogic.gdx.utils.Disposable
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 import de.javakaffee.kryoserializers.UUIDSerializer
 import ktx.app.KtxScreen
-import ktx.ashley.entity
-import ktx.box2d.BodyDefinition
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
-import org.kodein.di.generic.singleton
+import org.kodein.di.generic.instance
 import org.liberejo.api.engine.player.NetworkPlayerManager
+import org.liberejo.api.mod.PackageManager
+import org.liberejo.api.mod.PackageRepository
 import org.liberejo.api.network.NetworkManager
 import org.liberejo.api.network.packet.CDespawnPlayerPacket
 import org.liberejo.api.network.packet.CSpawnPlayerPacket
+import org.liberejo.game.assets.AssetManager
 import org.liberejo.game.engine.physics.PhysicsSystem
 import org.liberejo.game.engine.player.DefaultNetworkPlayerManager
 import org.liberejo.game.engine.render.RenderingSystem
+import org.liberejo.game.mod.DefaultPackageManager
+import org.liberejo.game.mod.DefaultPackageRepository
 import org.liberejo.game.network.DefaultNetworkManager
 import java.util.*
-import kotlin.experimental.inv
 
 class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localhost") : KtxScreen {
 	private val kodein = Kodein {
-		bind<PooledEngine>() with singleton { engine }
-		bind<NetworkManager>() with singleton { networkManager }
-		bind<NetworkPlayerManager>() with singleton { networkPlayerManager }
-		bind<InputMultiplexer>() with singleton { inputMultiplexer}
-		bind<Stage>() with singleton { uiStage }
+		bind<PooledEngine>() with instance(engine)
+		bind<NetworkManager>() with instance(networkManager)
+		bind<NetworkPlayerManager>() with instance(networkPlayerManager)
+		bind<InputMultiplexer>() with instance(inputMultiplexer)
+		bind<Stage>() with instance(uiStage)
 	}
 
 	// engine
@@ -54,19 +55,26 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 	// ui
 	private val uiStage = Stage(ScreenViewport())
 
+	// packages
+	private val packageRepository: PackageRepository = DefaultPackageRepository()
+	private val packageManager: PackageManager = DefaultPackageManager()
+
+	// assets
+	private val assetManager: AssetManager = AssetManager(kodein)
+
 	override fun show() {
 		initCamera()
 		initInput()
 		initPhysics()
 		initWorld()
 		initNetwork()
-		initMods()
+		initPackages()
 	}
 
 	private fun initCamera() {
 		Gdx.app.log("Game", "Initializing rendering")
 
-		renderingSystem.sb.projectionMatrix = renderingSystem.cam.combined // TODO necessary?
+		renderingSystem.spriteBatch.projectionMatrix = renderingSystem.cam.combined // TODO necessary?
 	}
 
 	private fun initInput() {
@@ -106,8 +114,8 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 		}
 	}
 
-	private fun initMods() {
-		Gdx.app.log("Game", "Initializing mods")
+	private fun initPackages() {
+		Gdx.app.log("Game", "Initializing packages")
 	}
 
 	override fun render(delta: Float) {

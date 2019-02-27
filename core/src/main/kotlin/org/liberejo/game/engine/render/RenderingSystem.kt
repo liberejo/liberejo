@@ -10,7 +10,7 @@ import org.liberejo.api.engine.render.RendererComponent
 import org.liberejo.api.engine.renderer
 import org.liberejo.api.engine.transform
 
-class RenderingSystem(val sb: SpriteBatch) : SortedIteratingSystem(allOf(RendererComponent::class).get(), ZComparator()) {
+class RenderingSystem(val spriteBatch: SpriteBatch) : SortedIteratingSystem(allOf(RendererComponent::class).get(), ZComparator()) {
 	val PIXELS_PER_METER = 64.0f
 	val METERS_PER_PIXEL = 1.0f / PIXELS_PER_METER
 
@@ -30,9 +30,9 @@ class RenderingSystem(val sb: SpriteBatch) : SortedIteratingSystem(allOf(Rendere
 //		entities.sortWith(comparator)
 
 		cam.update()
-		sb.projectionMatrix = cam.combined
-		sb.enableBlending()
-		sb.begin()
+		spriteBatch.projectionMatrix = cam.combined
+		spriteBatch.enableBlending()
+		spriteBatch.begin()
 
 		for (entity in entities) {
 			val renderer = entity.renderer()
@@ -47,7 +47,7 @@ class RenderingSystem(val sb: SpriteBatch) : SortedIteratingSystem(allOf(Rendere
 			val originX = width / 2f
 			val originY = height / 2f
 
-			sb.draw(
+			spriteBatch.draw(
 					renderer.region,
 					transform.position.x - originX, transform.position.y - originY,
 					0f, 0f,
@@ -57,7 +57,7 @@ class RenderingSystem(val sb: SpriteBatch) : SortedIteratingSystem(allOf(Rendere
 			)
 		}
 
-		sb.end()
+		spriteBatch.end()
 		entities.clear()
 	}
 
