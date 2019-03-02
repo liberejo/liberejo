@@ -72,7 +72,7 @@ project(":core") {
 
         // kotlin
         implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
-        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.0.1"
+        implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1"
 
         // gdx
         implementation "com.badlogicgames.gdx:gdx:$gdxVersion"
