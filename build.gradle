@@ -111,6 +111,9 @@ project(":core") {
 
         // moshi
         implementation "com.squareup.moshi:moshi:1.8.0"
+
+        // appdirs
+        implementation group: 'net.harawata', name: 'appdirs', version: '1.0.3'
     }
 }
 

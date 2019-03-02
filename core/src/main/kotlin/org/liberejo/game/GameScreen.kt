@@ -16,6 +16,7 @@ import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
 import org.kodein.di.generic.singleton
+import org.liberejo.api.config.ConfigManager
 import org.liberejo.api.engine.player.NetworkPlayerManager
 import org.liberejo.api.mod.PackageManager
 import org.liberejo.api.mod.PackageRepository
@@ -23,6 +24,7 @@ import org.liberejo.api.network.NetworkManager
 import org.liberejo.api.network.packet.CDespawnPlayerPacket
 import org.liberejo.api.network.packet.CSpawnPlayerPacket
 import org.liberejo.game.assets.AssetManager
+import org.liberejo.game.config.DefaultConfigManager
 import org.liberejo.game.engine.physics.PhysicsSystem
 import org.liberejo.game.engine.player.DefaultNetworkPlayerManager
 import org.liberejo.game.engine.render.RenderingSystem
@@ -39,6 +41,7 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 		bind<InputMultiplexer>() with singleton { inputMultiplexer }
 		bind<Stage>() with singleton { uiStage }
 		bind<AssetManager>() with singleton { assetManager }
+		bind<ConfigManager>() with singleton { configManager }
 		bind<World>() with singleton { World(vec2(0f, 0f), true) } // TODO world manager
 	}
 
@@ -63,6 +66,8 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 	// packages
 	private val packageRepository: PackageRepository = DefaultPackageRepository()
 	private val packageManager: PackageManager = DefaultPackageManager()
+
+	private val configManager: ConfigManager = DefaultConfigManager()
 
 	// assets
 	private val assetManager: AssetManager = AssetManager(kodein)
