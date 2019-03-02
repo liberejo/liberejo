@@ -6,13 +6,16 @@ import com.badlogic.gdx.InputMultiplexer
 import com.badlogic.gdx.graphics.GL20
 import com.badlogic.gdx.graphics.g2d.SpriteBatch
 import com.badlogic.gdx.math.Vector2
+import com.badlogic.gdx.physics.box2d.World
 import com.badlogic.gdx.scenes.scene2d.Stage
 import com.badlogic.gdx.utils.viewport.ScreenViewport
 import de.javakaffee.kryoserializers.UUIDSerializer
 import ktx.app.KtxScreen
+import ktx.math.vec2
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.instance
+import org.kodein.di.generic.singleton
 import org.liberejo.api.engine.player.NetworkPlayerManager
 import org.liberejo.api.mod.PackageManager
 import org.liberejo.api.mod.PackageRepository
@@ -30,11 +33,13 @@ import java.util.*
 
 class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localhost") : KtxScreen {
 	private val kodein = Kodein {
-		bind<PooledEngine>() with instance(engine)
-		bind<NetworkManager>() with instance(networkManager)
-		bind<NetworkPlayerManager>() with instance(networkPlayerManager)
-		bind<InputMultiplexer>() with instance(inputMultiplexer)
-		bind<Stage>() with instance(uiStage)
+		bind<PooledEngine>() with singleton { engine }
+		bind<NetworkManager>() with singleton { networkManager }
+		bind<NetworkPlayerManager>() with singleton { networkPlayerManager }
+		bind<InputMultiplexer>() with singleton { inputMultiplexer }
+		bind<Stage>() with singleton { uiStage }
+		bind<AssetManager>() with singleton { assetManager }
+		bind<World>() with singleton { World(vec2(0f, 0f), true) } // TODO world manager
 	}
 
 	// engine

@@ -8,7 +8,8 @@ import org.kodein.di.Kodein
 import org.kodein.di.generic.instance
 
 class AssetManager(val kodein: Kodein) {
-	private val assetManager: AssetManager by kodein.instance()
+//	private val assetManager: AssetManager by kodein.instance()
+	private val assetManager = AssetManager()
 
 	val logo by assetManager.load<Texture>("logo.png")
 }
