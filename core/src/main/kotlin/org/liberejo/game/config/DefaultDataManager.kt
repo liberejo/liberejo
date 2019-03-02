@@ -2,18 +2,20 @@ package org.liberejo.game.config
 
 import com.squareup.moshi.Moshi
 import net.harawata.appdirs.AppDirsFactory
-import org.liberejo.api.config.ConfigManager
+import org.liberejo.api.config.DataManager
 import org.liberejo.api.config.LiberejoConfig
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
-class DefaultConfigManager : ConfigManager {
+class DefaultDataManager : DataManager {
 	private val moshi: Moshi = Moshi.Builder().build()
 	private val configAdapter = moshi.adapter(LiberejoConfig::class.java)
 
 	override val dataDir: Path
 	override val configDir: Path
+
+	override val packagesDir: Path
 
 	override val configFile: Path
 
@@ -24,8 +26,11 @@ class DefaultConfigManager : ConfigManager {
 		dataDir = Paths.get(appDirs.getUserDataDir("liberejo", null, null))
 		configDir = Paths.get(appDirs.getUserConfigDir("liberejo", null, null))
 
+		packagesDir = dataDir.resolve("packages")
+
 		Files.createDirectories(dataDir)
 		Files.createDirectories(configDir)
+		Files.createDirectories(packagesDir)
 
 		configFile = configDir.resolve("config.json")
 	}
