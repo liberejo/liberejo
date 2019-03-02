@@ -1,23 +1,42 @@
 package org.liberejo.game.config
 
+import com.squareup.moshi.Moshi
 import net.harawata.appdirs.AppDirsFactory
 import org.liberejo.api.config.ConfigManager
 import org.liberejo.api.config.LiberejoConfig
-import org.liberejo.game.Liberejo
+import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 
 class DefaultConfigManager : ConfigManager {
-	private val appDirs = AppDirsFactory.getInstance()
+	private val moshi: Moshi = Moshi.Builder().build()
+	private val configAdapter = moshi.adapter(LiberejoConfig::class.java)
 
-	override val dataDir: Path = Paths.get(appDirs.getUserDataDir("liberejo", null, null))
-	override val configDir: Path = Paths.get(appDirs.getUserConfigDir("liberejo", null, null))
+	override val dataDir: Path
+	override val configDir: Path
+
+	override val configFile: Path
+
+	init {
+		// use AppDirs to locate per-platform directories
+		val appDirs = AppDirsFactory.getInstance()
+
+		dataDir = Paths.get(appDirs.getUserDataDir("liberejo", null, null))
+		configDir = Paths.get(appDirs.getUserConfigDir("liberejo", null, null))
+
+		Files.createDirectories(dataDir)
+		Files.createDirectories(configDir)
+
+		configFile = configDir.resolve("config.json")
+	}
 
 	override fun loadConfig(): LiberejoConfig {
-		TODO("not implemented")
+		val raw = Files.readAllBytes(configFile).toString()
+		return configAdapter.fromJson(raw) ?: LiberejoConfig()
 	}
 
 	override fun saveConfig(config: LiberejoConfig) {
-		TODO("not implemented")
+		val json = configAdapter.toJson(config)
+		Files.write(configFile, json.toByteArray())
 	}
 }
