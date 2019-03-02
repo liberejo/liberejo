@@ -2,4 +2,4 @@ plugins {
     id 'application'
 }
 
-mainClassName = 'org.liberejo.game.desktop.DesktopLauncher'
+mainClassName = 'org.liberejo.launcher.DesktopLauncher'
