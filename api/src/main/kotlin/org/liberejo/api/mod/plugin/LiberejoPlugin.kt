@@ -1,6 +1,8 @@
 package org.liberejo.api.mod.plugin
 
-interface LiberejoPlugin {
-	fun onLoad()
-	fun onUnload()
+import org.kodein.di.KodeinAware
+
+abstract class LiberejoPlugin : KodeinAware {
+	abstract fun onLoad()
+	abstract fun onUnload()
 }

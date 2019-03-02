@@ -39,28 +39,30 @@ project(":api") {
         api "com.badlogicgames.ashley:ashley:$ashleyVersion"
 
         // ktx
-        implementation group: "io.github.libktx", name: "ktx-actors", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-app", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-ashley", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-assets", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-async", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-box2d", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-collections", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-freetype", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-graphics", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-i18n", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-inject", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-log", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-math", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-scene2d", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-style", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-vis", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-vis-style", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-actors", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-app", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-ashley", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-assets", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-async", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-box2d", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-collections", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-freetype", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-graphics", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-i18n", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-log", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-math", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-scene2d", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-style", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-vis", version: ktxVersion
+        api group: "io.github.libktx", name: "ktx-vis-style", version: ktxVersion
 
         // kryo
-        implementation group: "com.esotericsoftware", name: "kryo", version: "5.0.0-RC2"
-        implementation group: "kryonet", name: "kryonet", version: "2.21"
-        implementation group: "de.javakaffee", name: "kryo-serializers", version: "0.45"
+        api group: "com.esotericsoftware", name: "kryo", version: "5.0.0-RC2"
+        api group: "kryonet", name: "kryonet", version: "2.21"
+        api group: "de.javakaffee", name: "kryo-serializers", version: "0.45"
+
+        // kodein
+        api "org.kodein.di:kodein-di-generic-jvm:6.1.0"
     }
 }
 
@@ -81,7 +83,7 @@ project(":core") {
 
         // ktx
         implementation group: "io.github.libktx", name: "ktx-actors", version: ktxVersion
-        api group: "io.github.libktx", name: "ktx-app", version: ktxVersion
+        implementation group: "io.github.libktx", name: "ktx-app", version: ktxVersion
         implementation group: "io.github.libktx", name: "ktx-ashley", version: ktxVersion
         implementation group: "io.github.libktx", name: "ktx-assets", version: ktxVersion
         implementation group: "io.github.libktx", name: "ktx-async", version: ktxVersion
@@ -90,7 +92,6 @@ project(":core") {
         implementation group: "io.github.libktx", name: "ktx-freetype", version: ktxVersion
         implementation group: "io.github.libktx", name: "ktx-graphics", version: ktxVersion
         implementation group: "io.github.libktx", name: "ktx-i18n", version: ktxVersion
-        implementation group: "io.github.libktx", name: "ktx-inject", version: ktxVersion
         implementation group: "io.github.libktx", name: "ktx-log", version: ktxVersion
         implementation group: "io.github.libktx", name: "ktx-math", version: ktxVersion
         implementation group: "io.github.libktx", name: "ktx-scene2d", version: ktxVersion
@@ -114,6 +115,9 @@ project(":core") {
 
         // appdirs
         implementation group: 'net.harawata', name: 'appdirs', version: '1.0.3'
+
+        // logback
+        implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.2.3'
     }
 }
 

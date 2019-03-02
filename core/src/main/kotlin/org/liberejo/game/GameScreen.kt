@@ -63,8 +63,8 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 	private val uiStage = Stage(ScreenViewport())
 
 	// packages
-	private val packageRepository: PackageRepository = DefaultPackageRepository()
-	private val packageManager: PackageManager = DefaultPackageManager()
+	private val packageRepository: PackageRepository = DefaultPackageRepository(kodein)
+	private val packageManager: PackageManager = DefaultPackageManager(kodein)
 
 	private val dataManager: DataManager = DefaultDataManager()
 

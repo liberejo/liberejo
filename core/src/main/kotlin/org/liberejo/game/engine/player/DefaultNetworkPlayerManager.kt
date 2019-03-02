@@ -9,6 +9,7 @@ import com.esotericsoftware.kryonet.Connection
 import com.google.common.collect.HashBiMap
 import ktx.ashley.allOf
 import org.kodein.di.Kodein
+import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 import org.liberejo.api.engine.Transform
 import org.liberejo.api.network.NetworkManager
@@ -24,10 +25,10 @@ import org.liberejo.api.network.packet.CSpawnPlayerPacket
 import org.liberejo.game.engine.spawnPlayer
 import java.util.*
 
-class DefaultNetworkPlayerManager(kodein: Kodein) : NetworkPlayerManager {
-	private val networkManager: NetworkManager by kodein.instance()
-	private val engine: PooledEngine by kodein.instance()
-	private val world: World by kodein.instance()
+class DefaultNetworkPlayerManager(override val kodein: Kodein) : NetworkPlayerManager, KodeinAware {
+	private val networkManager: NetworkManager by instance()
+	private val engine: PooledEngine by instance()
+	private val world: World by instance()
 
 	private val connections = HashBiMap.create<UUID, Int>()
 
@@ -118,11 +119,11 @@ class DefaultNetworkPlayerManager(kodein: Kodein) : NetworkPlayerManager {
 		}!!
 	}
 
-	override fun playerByConnection(conn: Connection): Entity {
+	override fun playerByConnection(connection: Connection): Entity {
 		if(!networkManager.isServer)
 			throw IllegalStateException(notServerException)
 
-		return connections.inverse()[conn.id]?.let { playerById(it) }!!
+		return connections.inverse()[connection.id]?.let { playerById(it) }!!
 	}
 
 	override fun connectionByPlayer(player: Player): Connection {
