@@ -2,18 +2,11 @@ package org.liberejo.game.mod
 
 import org.liberejo.api.mod.PackageInfo
 import org.liberejo.api.mod.PackageRepository
-import org.liberejo.api.mod.declaration.RemotePackageDeclaration
 
 class DefaultPackageRepository : PackageRepository {
-	override val installedPackages: List<PackageInfo>
-		get() = TODO("not implemented")
+	override val installedPackages: List<PackageInfo> = emptyList()
 
 	override fun scanLocalPackages() {
-		TODO("not implemented")
+		// TODO scan
 	}
-
-	override fun installRemotePackage(declaration: RemotePackageDeclaration) {
-		TODO("not implemented")
-	}
-
 }

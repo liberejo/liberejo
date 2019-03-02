@@ -1,7 +1,8 @@
 package org.liberejo.api.mod
 
-import org.liberejo.api.mod.declaration.RemotePackageDeclaration
-
+/**
+ * Manages the installation of packages
+ */
 interface PackageRepository {
 	val installedPackages: List<PackageInfo>
 
@@ -9,5 +10,6 @@ interface PackageRepository {
 	fun scanLocalPackages()
 
 	// install mod from repository
-	fun installRemotePackage(declaration: RemotePackageDeclaration)
+	// TODO
+//	fun installRemotePackage(declaration: RemotePackageDeclaration)
 }
