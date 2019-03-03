@@ -8,7 +8,7 @@ buildscript {
     }
 }
 
-allprojects {
+subprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
     apply plugin: "kotlin"
@@ -134,6 +134,7 @@ project(":launcher") {
 
         // gdx
         implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
+        implementation "com.badlogicgames.gdx:gdx-backend-headless:$gdxVersion"
         implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         implementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
 
