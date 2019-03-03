@@ -33,7 +33,7 @@ project(":api") {
 
     dependencies {
         // kotlin
-        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+        api "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
 
         // gdx
         api "com.badlogicgames.gdx:gdx:$gdxVersion"
@@ -72,7 +72,7 @@ project(":core") {
     apply plugin: "kotlin"
 
     dependencies {
-        compile project(":api")
+        api project(":api")
 
         // kotlin
         implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
@@ -127,10 +127,17 @@ project(":launcher") {
     apply plugin: "kotlin"
 
     dependencies {
-        compile project(":core")
+        implementation project(":core")
+
+        // kotlin
+        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+        // gdx
         implementation "com.badlogicgames.gdx:gdx-backend-lwjgl:$gdxVersion"
         implementation "com.badlogicgames.gdx:gdx-platform:$gdxVersion:natives-desktop"
         implementation "com.badlogicgames.gdx:gdx-box2d-platform:$gdxVersion:natives-desktop"
-        implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlinVersion"
+
+        // ktx
+        implementation group: "io.github.libktx", name: "ktx-app", version: ktxVersion
     }
 }
