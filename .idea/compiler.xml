@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="api_main" target="1.8" />
+      <module name="api_test" target="1.8" />
+      <module name="core_main" target="1.8" />
+      <module name="core_test" target="1.8" />
+      <module name="launcher_main" target="1.8" />
+      <module name="launcher_test" target="1.8" />
+      <module name="liberejo_main" target="1.8" />
+      <module name="liberejo_test" target="1.8" />
+      <module name="org.liberejo.liberejo.main" target="1.8" />
+      <module name="org.liberejo.liberejo.test" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>
