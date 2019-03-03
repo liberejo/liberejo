@@ -2,7 +2,8 @@ package org.liberejo.game.network
 
 import com.badlogic.gdx.Gdx
 import com.esotericsoftware.kryo.Serializer
-import com.esotericsoftware.kryonet.*
+import com.esotericsoftware.kryonet.Client
+import com.esotericsoftware.kryonet.Server
 import org.liberejo.api.network.NetworkManager
 import org.liberejo.api.network.onConnect
 import org.liberejo.api.network.onDisconnect
@@ -36,10 +37,10 @@ class DefaultNetworkManager(override val isClient: Boolean, override val isServe
 			}
 		}
 
-		if(isServer)
+		if (isServer)
 			server.start()
 
-		if(isClient)
+		if (isClient)
 			client.start()
 	}
 
@@ -54,16 +55,16 @@ class DefaultNetworkManager(override val isClient: Boolean, override val isServe
 	}
 
 	override fun start() {
-		if(isServer)
+		if (isServer)
 			server.bind(TCP_PORT, UDP_PORT) // TODO handle bind error
-		if(isClient)
+		if (isClient)
 			client.connect(CONNECT_WAIT, address, TCP_PORT, UDP_PORT)
 	}
 
 	override fun stop() {
-		if(isServer)
+		if (isServer)
 			server.stop()
-		if(isClient)
+		if (isClient)
 			client.stop()
 	}
 }

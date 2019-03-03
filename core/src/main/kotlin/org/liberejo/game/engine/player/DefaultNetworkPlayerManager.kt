@@ -12,11 +12,11 @@ import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
 import org.liberejo.api.engine.Transform
-import org.liberejo.api.network.NetworkManager
 import org.liberejo.api.engine.player
 import org.liberejo.api.engine.player.NetworkPlayerManager
 import org.liberejo.api.engine.player.Player
 import org.liberejo.api.engine.transform
+import org.liberejo.api.network.NetworkManager
 import org.liberejo.api.network.onConnect
 import org.liberejo.api.network.onDisconnect
 import org.liberejo.api.network.onReceive
@@ -120,14 +120,14 @@ class DefaultNetworkPlayerManager(override val kodein: Kodein) : NetworkPlayerMa
 	}
 
 	override fun playerByConnection(connection: Connection): Entity {
-		if(!networkManager.isServer)
+		if (!networkManager.isServer)
 			throw IllegalStateException(notServerException)
 
 		return connections.inverse()[connection.id]?.let { playerById(it) }!!
 	}
 
 	override fun connectionByPlayer(player: Player): Connection {
-		if(!networkManager.isServer)
+		if (!networkManager.isServer)
 			throw IllegalStateException(notServerException)
 
 		val connId = connections[player.id]
@@ -135,7 +135,7 @@ class DefaultNetworkPlayerManager(override val kodein: Kodein) : NetworkPlayerMa
 	}
 
 	override fun hasAuthority(conn: Connection, playerId: UUID): Boolean {
-		if(!networkManager.isServer)
+		if (!networkManager.isServer)
 			throw IllegalStateException(notServerException)
 
 		return connections[playerId] == conn.id

@@ -19,7 +19,7 @@ object Liberejo : KtxGame<Screen>() {
 	}
 
 	override fun dispose() {
-		if(gameScreen != null)
+		if (gameScreen != null)
 			gameScreen!!.dispose()
 		// dispose of assets
 	}

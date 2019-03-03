@@ -13,6 +13,7 @@ class DefaultPackageManager(override val kodein: Kodein) : PackageManager, Kodei
 	override fun loadPackage(packageDeclaration: PackageDeclaration): PackageManager.LoadedPackage {
 		TODO("not implemented")
 	}
+
 	override fun unloadPackage(packageDeclaration: PackageDeclaration) {
 		TODO("not implemented")
 	}
