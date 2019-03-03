@@ -12,9 +12,10 @@ allprojects {
     apply plugin: "eclipse"
     apply plugin: "idea"
     apply plugin: "kotlin"
+    apply plugin: "maven"
 
     group = "org.liberejo"
-    version = "0.1.0"
+    version = "0.1.0-SNAPSHOT"
 
     repositories {
         mavenLocal()
