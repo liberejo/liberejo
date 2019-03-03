@@ -4,4 +4,4 @@
 
 This repository contains the source of Liberejo's launcher, core game, and modding API. Everything contained is very work-in-progress.
 
-View the game's Trello board [here](https://trello.com/b/GTWM6LiE/liberejo).
+View the project's Trello board [here](https://trello.com/b/GTWM6LiE/liberejo).
