@@ -1,4 +1,4 @@
-package org.liberejo.api.config
+package org.liberejo.api.data
 
 import java.nio.file.Path
 

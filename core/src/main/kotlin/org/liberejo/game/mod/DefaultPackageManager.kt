@@ -3,7 +3,7 @@ package org.liberejo.game.mod
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
-import org.liberejo.api.config.DataManager
+import org.liberejo.api.data.DataManager
 import org.liberejo.api.mod.PackageManager
 import org.liberejo.api.mod.declaration.PackageDeclaration
 
@@ -11,7 +11,7 @@ class DefaultPackageManager(override val kodein: Kodein) : PackageManager, Kodei
 	private val dataManager: DataManager by instance()
 
 	override fun loadPackage(packageDeclaration: PackageDeclaration): PackageManager.LoadedPackage {
-		TODO("not implemented")
+		val classLoader = URLClassLoader()
 	}
 
 	override fun unloadPackage(packageDeclaration: PackageDeclaration) {

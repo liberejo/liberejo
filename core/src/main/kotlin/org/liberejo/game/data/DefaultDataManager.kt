@@ -1,9 +1,9 @@
-package org.liberejo.game.config
+package org.liberejo.game.data
 
 import com.squareup.moshi.Moshi
 import net.harawata.appdirs.AppDirsFactory
-import org.liberejo.api.config.DataManager
-import org.liberejo.api.config.LiberejoConfig
+import org.liberejo.api.data.DataManager
+import org.liberejo.api.data.LiberejoConfig
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths

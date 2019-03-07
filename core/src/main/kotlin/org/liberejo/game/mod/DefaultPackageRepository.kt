@@ -3,7 +3,7 @@ package org.liberejo.game.mod
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
-import org.liberejo.api.config.DataManager
+import org.liberejo.api.data.DataManager
 import org.liberejo.api.mod.PackageInfo
 import org.liberejo.api.mod.PackageRepository
 
