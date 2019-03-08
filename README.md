@@ -1,4 +1,4 @@
-![Travis](https://img.shields.io/travis/com/liberejo/liberejo.svg)
+[![Build Status](https://travis-ci.com/liberejo/liberejo.svg?branch=master)](https://travis-ci.com/liberejo/liberejo)
 
 # Liberejo
 
