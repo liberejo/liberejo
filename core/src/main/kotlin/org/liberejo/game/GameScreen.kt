@@ -17,8 +17,7 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.singleton
 import org.liberejo.api.data.DataManager
 import org.liberejo.api.engine.player.NetworkPlayerManager
-import org.liberejo.api.mod.PackageManager
-import org.liberejo.api.mod.PackageRepository
+import org.liberejo.api.`package`.PackageManager
 import org.liberejo.api.network.NetworkManager
 import org.liberejo.api.network.packet.CDespawnPlayerPacket
 import org.liberejo.api.network.packet.CSpawnPlayerPacket
@@ -27,8 +26,7 @@ import org.liberejo.game.data.DefaultDataManager
 import org.liberejo.game.engine.physics.PhysicsSystem
 import org.liberejo.game.engine.player.DefaultNetworkPlayerManager
 import org.liberejo.game.engine.render.RenderingSystem
-import org.liberejo.game.mod.DefaultPackageManager
-import org.liberejo.game.mod.DefaultPackageRepository
+import org.liberejo.game.`package`.DefaultPackageManager
 import org.liberejo.game.network.DefaultNetworkManager
 import java.util.*
 
@@ -40,6 +38,7 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 		bind<InputMultiplexer>() with singleton { inputMultiplexer }
 		bind<Stage>() with singleton { uiStage }
 		bind<AssetManager>() with singleton { assetManager }
+		bind<PackageManager>() with singleton { packageManager }
 		bind<DataManager>() with singleton { dataManager }
 		bind<World>() with singleton { World(vec2(0f, 0f), true) } // TODO world manager
 	}
@@ -63,7 +62,6 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 	private val uiStage = Stage(ScreenViewport())
 
 	// packages
-	private val packageRepository: PackageRepository = DefaultPackageRepository(kodein)
 	private val packageManager: PackageManager = DefaultPackageManager(kodein)
 
 	private val dataManager: DataManager = DefaultDataManager()
@@ -125,6 +123,8 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 
 	private fun initPackages() {
 		Gdx.app.log("Game", "Initializing packages")
+
+		packageManager.scanLocalPackages()
 	}
 
 	override fun render(delta: Float) {
