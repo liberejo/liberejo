@@ -11,6 +11,7 @@ interface NetworkManager {
 	val server: Server
 	val client: Client
 
+	@Suppress("unused")
 	companion object {
 		const val TCP_PORT = 34500
 		const val UDP_PORT = 34501

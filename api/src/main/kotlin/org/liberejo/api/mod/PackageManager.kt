@@ -1,6 +1,6 @@
-package org.liberejo.api.`package`
+package org.liberejo.api.mod
 
-import org.liberejo.api.`package`.declaration.PackageDeclaration
+import org.liberejo.api.mod.declaration.PackageDeclaration
 import java.nio.file.Path
 
 /**

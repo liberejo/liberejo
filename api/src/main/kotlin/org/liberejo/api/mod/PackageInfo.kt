@@ -1,4 +1,4 @@
-package org.liberejo.api.`package`
+package org.liberejo.api.mod
 
 import com.squareup.moshi.JsonClass
 

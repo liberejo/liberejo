@@ -1,4 +1,4 @@
-package org.liberejo.api.`package`.plugin
+package org.liberejo.api.mod.plugin
 
 import org.kodein.di.KodeinAware
 

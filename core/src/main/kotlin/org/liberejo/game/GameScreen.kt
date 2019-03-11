@@ -17,7 +17,7 @@ import org.kodein.di.generic.bind
 import org.kodein.di.generic.singleton
 import org.liberejo.api.data.DataManager
 import org.liberejo.api.engine.player.NetworkPlayerManager
-import org.liberejo.api.`package`.PackageManager
+import org.liberejo.api.mod.PackageManager
 import org.liberejo.api.network.NetworkManager
 import org.liberejo.api.network.packet.CDespawnPlayerPacket
 import org.liberejo.api.network.packet.CSpawnPlayerPacket
@@ -26,7 +26,7 @@ import org.liberejo.game.data.DefaultDataManager
 import org.liberejo.game.engine.physics.PhysicsSystem
 import org.liberejo.game.engine.player.DefaultNetworkPlayerManager
 import org.liberejo.game.engine.render.RenderingSystem
-import org.liberejo.game.`package`.DefaultPackageManager
+import org.liberejo.game.mod.DefaultPackageManager
 import org.liberejo.game.network.DefaultNetworkManager
 import java.util.*
 

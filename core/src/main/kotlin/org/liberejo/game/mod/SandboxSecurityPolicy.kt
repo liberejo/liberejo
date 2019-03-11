@@ -1,4 +1,4 @@
-package org.liberejo.game.`package`
+package org.liberejo.game.mod
 
 import sun.plugin.security.PluginClassLoader
 import java.security.*

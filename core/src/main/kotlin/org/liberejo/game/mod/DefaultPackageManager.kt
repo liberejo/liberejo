@@ -1,19 +1,18 @@
-package org.liberejo.game.`package`
+package org.liberejo.game.mod
 
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
-import org.liberejo.api.`package`.PackageInfo
+import org.liberejo.api.mod.PackageInfo
 import org.liberejo.api.data.DataManager
-import org.liberejo.api.`package`.PackageManager
-import org.liberejo.api.`package`.declaration.PackageDeclaration
-import org.liberejo.api.`package`.plugin.LiberejoPlugin
+import org.liberejo.api.mod.PackageManager
+import org.liberejo.api.mod.declaration.PackageDeclaration
+import org.liberejo.api.mod.plugin.LiberejoPlugin
 import java.net.URLClassLoader
 import java.nio.file.Files
 import java.nio.file.Path
-import java.security.Policy
 
 class DefaultPackageManager(override val kodein: Kodein) : PackageManager, KodeinAware {
 	override var installedPackages: List<PackageManager.LoadedPackage> = emptyList()
