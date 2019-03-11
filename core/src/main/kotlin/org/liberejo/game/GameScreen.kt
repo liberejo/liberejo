@@ -124,7 +124,10 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 	private fun initPackages() {
 		Gdx.app.log("Game", "Initializing packages")
 
-		pluginManager.scanLocalPlugins()
+		val plugins = pluginManager.scanLocalPlugins()
+		plugins.forEach {
+			pluginManager.loadPlugin(it)
+		}
 	}
 
 	override fun render(delta: Float) {

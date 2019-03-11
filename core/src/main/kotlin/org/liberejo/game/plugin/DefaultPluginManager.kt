@@ -18,6 +18,7 @@ class DefaultPluginManager(override val kodein: Kodein) : PluginManager, KodeinA
 	private val packageInfoAdapter = moshi.adapter(PluginInfo::class.java)
 
 	init {
+		// TODO
 //		Policy.setPolicy(SandboxSecurityPolicy())
 //		System.setSecurityManager(SecurityManager())
 	}
@@ -33,6 +34,7 @@ class DefaultPluginManager(override val kodein: Kodein) : PluginManager, KodeinA
 
 			val packageInfo = packageInfoAdapter.fromJson(stream.readBytes().toString(Charsets.UTF_8)) ?: return@forEach
 			packages.add(PluginManager.DetectedPlugin(packageInfo, path))
+			println("added ${packageInfo.name} at $path")
 		}
 
 		return packages
@@ -45,7 +47,7 @@ class DefaultPluginManager(override val kodein: Kodein) : PluginManager, KodeinA
 		val classLoader = URLClassLoader(arrayOf(url))
 		val clazz = classLoader.loadClass(mainClass)
 
-		val plugin = clazz.newInstance() as LiberejoPlugin
+		val plugin = clazz.getConstructor(Kodein::class.java).newInstance(kodein) as LiberejoPlugin
 		plugin.load()
 
 		return plugin
