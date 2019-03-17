@@ -2,6 +2,7 @@ package org.liberejo.game.data
 
 import com.squareup.moshi.Moshi
 import net.harawata.appdirs.AppDirsFactory
+import org.kodein.di.Kodein
 import org.liberejo.api.data.DataManager
 import org.liberejo.api.data.LiberejoConfig
 import java.nio.file.Files

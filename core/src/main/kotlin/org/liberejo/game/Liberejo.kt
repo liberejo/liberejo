@@ -5,8 +5,12 @@ import com.kotcrab.vis.ui.VisUI
 import ktx.app.KtxGame
 import org.liberejo.game.screen.MainMenu
 
+/**
+ * Singleton to manage the entire game flow (in-game and out)
+ */
 object Liberejo : KtxGame<Screen>() {
 	private var gameScreen: GameScreen? = null
+
 	override fun create() {
 		// load assets
 
@@ -19,8 +23,7 @@ object Liberejo : KtxGame<Screen>() {
 	}
 
 	override fun dispose() {
-		if (gameScreen != null)
-			gameScreen!!.dispose()
+		gameScreen?.dispose()
 		// dispose of assets
 	}
 
@@ -37,5 +40,6 @@ object Liberejo : KtxGame<Screen>() {
 
 	fun loadMainMenu() {
 		addScreen(MainMenu())
+		setScreen<MainMenu>()
 	}
 }

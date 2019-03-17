@@ -33,6 +33,8 @@ class DefaultPluginManager(override val kodein: Kodein) : PluginManager, KodeinA
 //		System.setSecurityManager(SecurityManager())
 
 		// handle plugin manifest packet
+		networkManager.registerType(CPluginManifestPacket::class.java)
+
 		networkManager.client.onReceive<CPluginManifestPacket> { conn, packet ->
 			packet.remotePlugins.forEach {
 				// download, install, and load this plugin

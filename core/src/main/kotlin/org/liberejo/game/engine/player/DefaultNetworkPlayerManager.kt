@@ -21,6 +21,8 @@ import org.liberejo.api.network.onConnect
 import org.liberejo.api.network.onDisconnect
 import org.liberejo.api.network.onReceive
 import org.liberejo.api.network.packet.CDespawnPlayerPacket
+import org.liberejo.api.network.packet.CGrantPlayerAuthorityPacket
+import org.liberejo.api.network.packet.CRevokePlayerAuthorityPacket
 import org.liberejo.api.network.packet.CSpawnPlayerPacket
 import org.liberejo.game.engine.spawnPlayer
 import java.util.*
@@ -36,6 +38,12 @@ class DefaultNetworkPlayerManager(override val kodein: Kodein) : NetworkPlayerMa
 
 	init {
 		networkManager.apply {
+			registerType(CSpawnPlayerPacket::class.java)
+			registerType(CDespawnPlayerPacket::class.java)
+
+			registerType(CGrantPlayerAuthorityPacket::class.java)
+			registerType(CRevokePlayerAuthorityPacket::class.java)
+
 			client.onDisconnect {
 				// TODO
 				//Liberejo.returnToMainMenu()

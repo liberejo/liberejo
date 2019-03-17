@@ -113,17 +113,7 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 			registerType(Vector2::class.java)
 			registerType(UUID::class.java, UUIDSerializer())
 
-			// packets
-
-			// TODO detect annotated classes
-
-			registerType(CSpawnPlayerPacket::class.java)
-			registerType(CDespawnPlayerPacket::class.java)
-
-			registerType(CGrantPlayerAuthorityPacket::class.java)
-			registerType(CRevokePlayerAuthorityPacket::class.java)
-
-			registerType(CPluginManifestPacket::class.java)
+			// TODO what's the best way of registering packets?
 
 			start()
 		}
