@@ -110,13 +110,13 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 
 		networkManager.apply {
 			// misc
-			register(Vector2::class.java)
-			register(UUID::class.java, UUIDSerializer())
+			registerPacketType(Vector2::class.java)
+			registerPacketType(UUID::class.java, UUIDSerializer())
 
 			// packets
 
-			register(CSpawnPlayerPacket::class.java)
-			register(CDespawnPlayerPacket::class.java)
+			registerPacketType(CSpawnPlayerPacket::class.java)
+			registerPacketType(CDespawnPlayerPacket::class.java)
 
 			start()
 		}
