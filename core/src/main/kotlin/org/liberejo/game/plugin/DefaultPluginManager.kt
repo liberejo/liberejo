@@ -1,15 +1,16 @@
 package org.liberejo.game.plugin
 
+import com.badlogic.gdx.Gdx
 import com.squareup.moshi.Moshi
 import com.squareup.moshi.kotlin.reflect.KotlinJsonAdapterFactory
 import org.kodein.di.Kodein
 import org.kodein.di.KodeinAware
 import org.kodein.di.generic.instance
-import org.liberejo.api.plugin.PluginInfo
 import org.liberejo.api.data.DataManager
+import org.liberejo.api.plugin.PluginInfo
 import org.liberejo.api.plugin.PluginManager
-import org.liberejo.api.plugin.declaration.PluginDeclaration
-import org.liberejo.api.plugin.plugin.LiberejoPlugin
+import org.liberejo.api.plugin.PluginDeclaration
+import org.liberejo.api.plugin.LiberejoPlugin
 import java.net.URLClassLoader
 import java.nio.file.Files
 
@@ -18,7 +19,7 @@ class DefaultPluginManager(override val kodein: Kodein) : PluginManager, KodeinA
 	private val packageInfoAdapter = moshi.adapter(PluginInfo::class.java)
 
 	init {
-		// TODO
+		// TODO security
 //		Policy.setPolicy(SandboxSecurityPolicy())
 //		System.setSecurityManager(SecurityManager())
 	}
@@ -28,13 +29,13 @@ class DefaultPluginManager(override val kodein: Kodein) : PluginManager, KodeinA
 	override fun scanLocalPlugins(): List<PluginManager.DetectedPlugin> {
 		val packages = mutableListOf<PluginManager.DetectedPlugin>()
 
+		// load packages installed on system (also loads dev packages from resources folders)
 		Files.walk(dataManager.packagesDir).forEach { path ->
 			val classLoader = URLClassLoader(arrayOf(path.toUri().toURL()))
 			val stream = classLoader.getResourceAsStream("plugin.json") ?: return@forEach
 
 			val packageInfo = packageInfoAdapter.fromJson(stream.readBytes().toString(Charsets.UTF_8)) ?: return@forEach
 			packages.add(PluginManager.DetectedPlugin(packageInfo, path))
-			println("added ${packageInfo.name} at $path")
 		}
 
 		return packages
@@ -48,6 +49,8 @@ class DefaultPluginManager(override val kodein: Kodein) : PluginManager, KodeinA
 		val clazz = classLoader.loadClass(mainClass)
 
 		val plugin = clazz.getConstructor(Kodein::class.java).newInstance(kodein) as LiberejoPlugin
+
+		Gdx.app.log("Plugins", "Loading plugin \"${detectedPlugin.info.name}\"")
 		plugin.load()
 
 		return plugin

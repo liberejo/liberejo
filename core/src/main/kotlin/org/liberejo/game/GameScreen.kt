@@ -31,6 +31,7 @@ import org.liberejo.game.network.DefaultNetworkManager
 import java.util.*
 
 class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localhost") : KtxScreen {
+	// all plugins also have access to this
 	private val kodein = Kodein {
 		bind<PooledEngine>() with singleton { engine }
 		bind<NetworkManager>() with singleton { networkManager }
@@ -75,7 +76,7 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 		initPhysics()
 		initWorld()
 		initNetwork()
-		initPackages()
+		initPlugins()
 	}
 
 	private fun initCamera() {
@@ -121,10 +122,12 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 		}
 	}
 
-	private fun initPackages() {
-		Gdx.app.log("Game", "Initializing packages")
+	private fun initPlugins() {
+		Gdx.app.log("Game", "Loading plugins")
 
 		val plugins = pluginManager.scanLocalPlugins()
+
+		// TODO contextually load plugins
 		plugins.forEach {
 			pluginManager.loadPlugin(it)
 		}
