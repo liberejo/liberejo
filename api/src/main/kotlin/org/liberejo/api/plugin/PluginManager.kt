@@ -10,10 +10,10 @@ interface PluginManager {
 	 * Load a detected plugin into the game
 	 */
 	fun loadPlugin(detectedPlugin: DetectedPlugin): LiberejoPlugin
-	fun unloadPlugin(pluginDeclaration: PluginDeclaration)
+	fun unloadPlugin(remotePluginDeclaration: RemotePluginDeclaration)
 
 	/**
-	 * Scan the system for locally installed plugins
+	 * Scan the system for locally installed remotePlugins
 	 */
 	fun scanLocalPlugins(): List<DetectedPlugin>
 

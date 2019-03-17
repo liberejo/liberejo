@@ -44,12 +44,12 @@ class DefaultNetworkManager(override val isClient: Boolean, override val isServe
 			client.start()
 	}
 
-	override fun <T : Any> registerPacketType(clazz: Class<T>) {
+	override fun <T : Any> registerType(clazz: Class<T>) {
 		client.kryo.register(clazz)
 		server.kryo.register(clazz)
 	}
 
-	override fun <T : Any> registerPacketType(clazz: Class<T>, serializer: Serializer<T>) {
+	override fun <T : Any> registerType(clazz: Class<T>, serializer: Serializer<T>) {
 		client.kryo.register(clazz, serializer)
 		server.kryo.register(clazz, serializer)
 	}

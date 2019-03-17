@@ -15,13 +15,13 @@ import ktx.math.vec2
 import org.kodein.di.Kodein
 import org.kodein.di.generic.bind
 import org.kodein.di.generic.singleton
+import org.liberejo.api.assets.AssetManager
 import org.liberejo.api.data.DataManager
 import org.liberejo.api.engine.player.NetworkPlayerManager
 import org.liberejo.api.plugin.PluginManager
 import org.liberejo.api.network.NetworkManager
-import org.liberejo.api.network.packet.CDespawnPlayerPacket
-import org.liberejo.api.network.packet.CSpawnPlayerPacket
-import org.liberejo.game.assets.AssetManager
+import org.liberejo.api.network.packet.*
+import org.liberejo.game.assets.DefaultAssetManager
 import org.liberejo.game.data.DefaultDataManager
 import org.liberejo.game.engine.physics.PhysicsSystem
 import org.liberejo.game.engine.player.DefaultNetworkPlayerManager
@@ -31,7 +31,7 @@ import org.liberejo.game.network.DefaultNetworkManager
 import java.util.*
 
 class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localhost") : KtxScreen {
-	// all plugins also have access to this
+	// all remotePlugins also have access to this
 	private val kodein = Kodein {
 		bind<PooledEngine>() with singleton { engine }
 		bind<NetworkManager>() with singleton { networkManager }
@@ -68,7 +68,7 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 	private val dataManager: DataManager = DefaultDataManager()
 
 	// assets
-	private val assetManager: AssetManager = AssetManager(kodein)
+	private val assetManager: AssetManager = DefaultAssetManager(kodein)
 
 	override fun show() {
 		initCamera()
@@ -110,24 +110,31 @@ class GameScreen(isClient: Boolean, isServer: Boolean, address: String = "localh
 
 		networkManager.apply {
 			// misc
-			registerPacketType(Vector2::class.java)
-			registerPacketType(UUID::class.java, UUIDSerializer())
+			registerType(Vector2::class.java)
+			registerType(UUID::class.java, UUIDSerializer())
 
 			// packets
 
-			registerPacketType(CSpawnPlayerPacket::class.java)
-			registerPacketType(CDespawnPlayerPacket::class.java)
+			// TODO detect annotated classes
+
+			registerType(CSpawnPlayerPacket::class.java)
+			registerType(CDespawnPlayerPacket::class.java)
+
+			registerType(CGrantPlayerAuthorityPacket::class.java)
+			registerType(CRevokePlayerAuthorityPacket::class.java)
+
+			registerType(CPluginManifestPacket::class.java)
 
 			start()
 		}
 	}
 
 	private fun initPlugins() {
-		Gdx.app.log("Game", "Loading plugins")
+		Gdx.app.log("Game", "Loading remotePlugins")
 
 		val plugins = pluginManager.scanLocalPlugins()
 
-		// TODO contextually load plugins
+		// TODO contextually load remotePlugins
 		plugins.forEach {
 			pluginManager.loadPlugin(it)
 		}

@@ -43,12 +43,12 @@ interface NetworkManager {
 	/**
 	 * Register a packet type for Kryo serialization
 	 */
-	fun <T : Any> registerPacketType(clazz: Class<T>)
+	fun <T : Any> registerType(clazz: Class<T>)
 
 	/**
 	 * Register a packet type for Kryo serialization with a customer serializer
 	 */
-	fun <T : Any> registerPacketType(clazz: Class<T>, serializer: Serializer<T>)
+	fun <T : Any> registerType(clazz: Class<T>, serializer: Serializer<T>)
 
 	/**
 	 * Begin network activity. Behavior depends on [isClient] and [isServer]
@@ -63,6 +63,9 @@ interface NetworkManager {
 
 // util
 
+/**
+ * @see[com.esotericsoftware.kryonet.Listener.received]
+ */
 inline fun <reified T : Any> EndPoint.onReceive(crossinline body: (conn: Connection, packet: T) -> Unit) {
 	addListener(object : Listener() {
 		override fun received(conn: Connection, obj: Any) {
@@ -72,6 +75,9 @@ inline fun <reified T : Any> EndPoint.onReceive(crossinline body: (conn: Connect
 	})
 }
 
+/**
+ * @see[com.esotericsoftware.kryonet.Listener.connected]
+ */
 inline fun EndPoint.onConnect(crossinline body: (conn: Connection) -> Unit) {
 	addListener(object : Listener() {
 		override fun connected(conn: Connection) {
@@ -80,6 +86,9 @@ inline fun EndPoint.onConnect(crossinline body: (conn: Connection) -> Unit) {
 	})
 }
 
+/**
+ * @see[com.esotericsoftware.kryonet.Listener.disconnected]
+ */
 inline fun EndPoint.onDisconnect(crossinline body: (conn: Connection) -> Unit) {
 	addListener(object : Listener() {
 		override fun disconnected(conn: Connection) {

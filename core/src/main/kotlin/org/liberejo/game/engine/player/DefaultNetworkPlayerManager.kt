@@ -114,9 +114,9 @@ class DefaultNetworkPlayerManager(override val kodein: Kodein) : NetworkPlayerMa
 	private val notServerException = "Cannot access connections when not the server"
 
 	override fun playerById(id: UUID): Entity {
-		return entities.firstOrNull {
+		return entities.first {
 			it.player().id == id
-		}!!
+		}
 	}
 
 	override fun playerByConnection(connection: Connection): Entity {
