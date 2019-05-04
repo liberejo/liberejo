@@ -20,10 +20,11 @@ subprojects {
     repositories {
         mavenLocal()
         mavenCentral()
-        google()
         jcenter()
+        google()
         maven { url "https://oss.sonatype.org/content/repositories/snapshots/" }
         maven { url "https://oss.sonatype.org/content/repositories/releases/" }
+        maven { url = uri("https://dl.bintray.com/kodein-framework/Kodein-DI") }
         maven { url "http://clojars.org/repo/" }
     }
 }
@@ -65,7 +66,7 @@ project(":api") {
         api group: "de.javakaffee", name: "kryo-serializers", version: "0.45"
 
         // kodein
-        api "org.kodein.di:kodein-di-generic-jvm:6.1.0"
+        api "org.kodein.di:kodein-di-generic-jvm:6.2.0"
 
         // moshi
         api "com.squareup.moshi:moshi:1.8.0"
@@ -113,7 +114,7 @@ project(":core") {
         implementation group: "de.javakaffee", name: "kryo-serializers", version: "0.45"
 
         // kodein
-        implementation "org.kodein.di:kodein-di-generic-jvm:6.1.0"
+        implementation "org.kodein.di:kodein-di-generic-jvm:6.2.0"
 
         // google
         implementation "com.google.guava:guava:27.0.1-jre"
